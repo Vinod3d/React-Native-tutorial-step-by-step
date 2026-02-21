@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 - Introduction to React Native</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        /* Main Title */
+        h1 {
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 2.5em;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        h1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Subtitle/Section Headers */
+        h2 {
+            color: #fff;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 25px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #ff1744;
+            font-size: 1.8em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(245, 87, 108, 0.3);
+        }
+
+        h2:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 20px 0 10px 0;
+            font-size: 1.4em;
+            padding-left: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        h3:hover {
+            color: #764ba2;
+            border-left-color: #764ba2;
+            padding-left: 15px;
+        }
+
+        /* Paragraphs */
+        p {
+            margin: 15px 0;
+            font-size: 1.05em;
+            color: #555;
+            line-height: 1.9;
+        }
+
+        /* Bullet Points */
+        ul {
+            margin: 20px 0 20px 30px;
+            list-style: none;
+        }
+
+        li {
+            margin: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.05em;
+            color: #444;
+            transition: all 0.3s ease;
+        }
+
+        li:hover {
+            color: #667eea;
+            transform: translateX(5px);
+            padding-left: 40px;
+        }
+
+        /* Bullet point styling */
+        li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        li:hover::before {
+            color: #667eea;
+            transform: scale(1.3);
+        }
+
+        /* Checkmarks for features */
+        li.feature::before {
+            content: "✓";
+            color: #4caf50;
+            font-size: 1.2em;
+        }
+
+        li.feature:hover::before {
+            color: #45a049;
+            transform: scale(1.3) rotate(20deg);
+        }
+
+        /* Numbered items */
+        .number-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .number-item:hover {
+            background: linear-gradient(135deg, #667eea25 0%, #764ba225 100%);
+            border-left-color: #f5576c;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .number-item strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        /* Highlight text */
+        strong {
+            color: #f5576c;
+            font-weight: 600;
+        }
+
+        /* Code blocks */
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #c7254e;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: transparent;
+            color: #f8f8f2;
+            padding: 0;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 3px solid #f5576c;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Horizontal line */
+        hr {
+            border: none;
+            height: 3px;
+            background: linear-gradient(to right, #667eea, #764ba2, #f5576c);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+        /* Special sections */
+        .section-intro {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 5px solid #667eea;
+            margin: 20px 0;
+            font-size: 1.05em;
+            color: #444;
+            transition: all 0.3s ease;
+        }
+
+        .section-intro:hover {
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-left-color: #f5576c;
+            transform: translateX(5px);
+        }
+
+        /* Emoji styling */
+        .emoji {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        /* Navigation */
+        .nav-next {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 30px 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .nav-next:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Summary box */
+        .summary {
+            background: linear-gradient(135deg, #fff5e1 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+        }
+
+        .summary:hover {
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        /* Interview section */
+        .interview {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .interview ol {
+            margin-left: 20px;
+        }
+
+        .interview li {
+            color: #2e7d32;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .footer strong {
+            color: #667eea;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2, #f5576c);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                padding: 15px 20px;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            body {
+                padding: 20px 10px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            td, th {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">📱</span>01 - Introduction to React Native</h1>
+
+        <h2><span class="emoji">1️⃣</span>What is React Native?</h2>
+        <p>React Native is an open-source JavaScript framework used to build cross-platform mobile applications. It was originally developed by Meta Platforms (formerly Facebook).</p>
+        <p>With React Native, developers can create native mobile apps for iOS and Android using a single codebase written in JavaScript and React.</p>
+        <p>Even though the code is written in JavaScript, React Native renders real native UI components. This means the apps look and perform like fully native apps built with Swift, Objective-C, Java, or Kotlin.</p>
+        <p><strong>In simple terms:</strong></p>
+        <div class="section-intro">React Native allows you to build high-performance mobile apps for multiple platforms using one shared codebase and JavaScript.</div>
+
+        <hr>
+
+        <h2><span class="emoji">2️⃣</span>Why React Native Was Created?</h2>
+        <p><strong>Before React Native:</strong></p>
+        <ul>
+            <li>Android apps were written in Java/Kotlin</li>
+            <li>iOS apps were written in Objective-C/Swift</li>
+            <li>Two separate teams were required</li>
+            <li>Development cost was high</li>
+        </ul>
+        <p><strong>Meta wanted:</strong></p>
+        <ul>
+            <li>Faster development</li>
+            <li>Single codebase</li>
+            <li>Native performance</li>
+            <li>Better developer experience</li>
+        </ul>
+        <p>So they created React Native.</p>
+
+        <hr>
+
+        <h2><span class="emoji">3️⃣</span>React vs React Native</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>React</th>
+                    <th>React Native</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Used for web apps</td>
+                    <td>Used for mobile apps</td>
+                </tr>
+                <tr>
+                    <td>Uses HTML</td>
+                    <td>Uses Native Components</td>
+                </tr>
+                <tr>
+                    <td>Runs in browser</td>
+                    <td>Runs on mobile devices</td>
+                </tr>
+                <tr>
+                    <td>Uses CSS</td>
+                    <td>Uses StyleSheet API</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>React Native <strong>does NOT use HTML</strong> like:</p>
+        <pre><code>&lt;div&gt;</code></pre>
+        <p>Instead it uses:</p>
+        <pre><code>&lt;View&gt;</code></pre>
+
+        <hr>
+
+        <h2><span class="emoji">4️⃣</span>How React Native Works Internally</h2>
+        <p>React Native uses a <strong>bridge architecture</strong>.</p>
+        <h3>Architecture Flow:</h3>
+        <div class="section-intro">
+            JavaScript Code<br>
+            ⬇<br>
+            Bridge<br>
+            ⬇<br>
+            Native Modules (Android/iOS)
+        </div>
+        <ul>
+            <li>JavaScript runs in a separate thread</li>
+            <li>Native UI renders on main thread</li>
+            <li>Bridge connects both worlds</li>
+        </ul>
+        <p>In newer versions, React Native uses:</p>
+        <ul>
+            <li>Fabric (New Rendering System)</li>
+            <li>TurboModules</li>
+            <li>JSI (JavaScript Interface)</li>
+        </ul>
+        <p>These improve performance significantly.</p>
+
+        <hr>
+
+        <h2><span class="emoji">5️⃣</span>Key Features of React Native</h2>
+
+        <h3 class="emoji">✅ Cross Platform</h3>
+        <p>Write once, run on Android & iOS.</p>
+
+        <h3 class="emoji">✅ Native Performance</h3>
+        <p>Uses real native components.</p>
+
+        <h3 class="emoji">✅ Hot Reloading</h3>
+        <p>See changes instantly without restarting app.</p>
+
+        <h3 class="emoji">✅ Large Community</h3>
+        <p>Backed by Meta and open-source contributors.</p>
+
+        <h3 class="emoji">✅ Third-party Libraries</h3>
+        <p>Thousands of npm packages available.</p>
+
+        <hr>
+
+        <h2><span class="emoji">6️⃣</span>Advantages of React Native</h2>
+        <ul>
+            <li class="feature">Faster development</li>
+            <li class="feature">Lower cost</li>
+            <li class="feature">Reusable code</li>
+            <li class="feature">Strong community</li>
+            <li class="feature">Easy to learn (if you know JavaScript)</li>
+        </ul>
+
+        <hr>
+
+        <h2><span class="emoji">7️⃣</span>Limitations of React Native</h2>
+        <ul>
+            <li>Performance slightly lower than fully native apps</li>
+            <li>Sometimes requires native code</li>
+            <li>Debugging bridge issues can be complex</li>
+            <li>Large app size</li>
+        </ul>
+
+        <hr>
+
+        <h2><span class="emoji">8️⃣</span>Popular Apps Built with React Native</h2>
+        <ul>
+            <li><strong>Facebook</strong></li>
+            <li><strong>Instagram</strong></li>
+            <li><strong>Shopify</strong></li>
+            <li><strong>Discord</strong></li>
+            <li><strong>Walmart</strong></li>
+        </ul>
+        <p>These apps prove React Native is production-ready.</p>
+
+        <hr>
+
+        <h2><span class="emoji">9️⃣</span>Who Should Learn React Native?</h2>
+        <ul>
+            <li>JavaScript developers</li>
+            <li>React developers</li>
+            <li>Frontend developers</li>
+            <li>Students</li>
+            <li>Freelancers</li>
+            <li>Startup founders</li>
+        </ul>
+
+        <hr>
+
+        <h2><span class="emoji">🔟</span>Career Scope</h2>
+        <p>React Native developers are in high demand because:</p>
+        <ul>
+            <li>Companies prefer cross-platform solutions</li>
+            <li>Cost-effective development</li>
+            <li>Fast MVP building</li>
+            <li>Startups prefer it</li>
+        </ul>
+        <p><strong>You can work as:</strong></p>
+        <ul>
+            <li>React Native Developer</li>
+            <li>Mobile App Developer</li>
+            <li>Cross-platform Engineer</li>
+            <li>Freelance App Developer</li>
+        </ul>
+
+        <hr>
+
+        <div class="summary">
+            <h2><span class="emoji">🎯</span>Summary</h2>
+            <p>In this chapter, you learned:</p>
+            <ul>
+                <li>What React Native is</li>
+                <li>Why it was created</li>
+                <li>How it works</li>
+                <li>Its advantages & limitations</li>
+                <li>Real-world usage</li>
+            </ul>
+        </div>
+
+        <div class="nav-next"><span class="emoji">➡</span>Next: 02 - Environment Setup</div>
+
+        <hr>
+
+        <h1><span class="emoji">📄</span>Detailed Notes – React Native Introduction</h1>
+
+        <h2><span class="emoji">🔹</span>Definition</h2>
+        <p>React Native is a JavaScript framework that allows developers to build native mobile apps using React.</p>
+        <p>It converts JavaScript components into real native UI components.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🔹</span>Core Concept</h2>
+        <p>React Native follows:</p>
+        <ul>
+            <li>Component-Based Architecture</li>
+            <li>Declarative UI</li>
+            <li>Unidirectional Data Flow</li>
+        </ul>
+
+        <hr>
+
+        <h2><span class="emoji">🔹</span>Important Terminologies</h2>
+
+        <div class="number-item">
+            <strong>1. Component:</strong> Reusable building block of UI.
+        </div>
+
+        <div class="number-item">
+            <strong>2. JSX:</strong> JavaScript XML syntax used to write UI. Example:
+            <pre><code>&lt;Text&gt;Hello World&lt;/Text&gt;</code></pre>
+        </div>
+
+        <div class="number-item">
+            <strong>3. Props:</strong> Data passed from parent to child component.
+        </div>
+
+        <div class="number-item">
+            <strong>4. State:</strong> Local data managed inside a component.
+        </div>
+
+        <hr>
+
+        <h2><span class="emoji">🔹</span>React Native vs Other Frameworks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Framework</th>
+                    <th>Language</th>
+                    <th>Performance</th>
+                    <th>Code Reuse</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>React Native</strong></td>
+                    <td>JavaScript</td>
+                    <td>High</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td><strong>Flutter</strong></td>
+                    <td>Dart</td>
+                    <td>Very High</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td><strong>Native Android</strong></td>
+                    <td>Java/Kotlin</td>
+                    <td>Very High</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><strong>Native iOS</strong></td>
+                    <td>Swift</td>
+                    <td>Very High</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2><span class="emoji">🔹</span>When to Use React Native?</h2>
+        <p><strong>Use React Native when:</strong></p>
+        <ul>
+            <li>You need cross-platform app</li>
+            <li>Budget is limited</li>
+            <li>Small to medium apps</li>
+            <li>Startup MVP</li>
+            <li>Fast development required</li>
+        </ul>
+        <p><strong>Avoid React Native when:</strong></p>
+        <ul>
+            <li>Heavy 3D gaming apps</li>
+            <li>Extremely performance-critical apps</li>
+        </ul>
+
+        <hr>
+
+        <h2><span class="emoji">🔹</span>Future of React Native</h2>
+        <p>React Native is continuously improving with:</p>
+        <ul>
+            <li>New Architecture</li>
+            <li>Better performance</li>
+            <li>Strong ecosystem</li>
+            <li>Growing enterprise adoption</li>
+        </ul>
+
+        <hr>
+
+        <div class="interview">
+            <h2><span class="emoji">🧠</span>Interview Questions (Basic Level)</h2>
+            <ol>
+                <li>What is React Native?</li>
+                <li>How is React Native different from React?</li>
+                <li>What is bridge in React Native?</li>
+                <li>Name some apps built with React Native.</li>
+                <li>What are advantages of React Native?</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2><span class="emoji">📌</span>Final Thoughts</h2>
+        <p>React Native is one of the most powerful frameworks for mobile development today.</p>
+        <p>It combines:</p>
+        <ul>
+            <li>Simplicity of JavaScript</li>
+            <li>Power of native apps</li>
+            <li>Speed of cross-platform development</li>
+        </ul>
+
+        <hr>
+
+        <div class="footer">
+            <p><strong>✅ Chapter 1 Completed</strong></p>
+            <p><strong>➡</strong> Next: <strong>02-environment-setup/</strong></p>
+            <p>Would you like to add diagrams explanation, real code mini examples, or proceed to Chapter 2?</p>
+        </div>
+    </div>
+</body>
+</html>
