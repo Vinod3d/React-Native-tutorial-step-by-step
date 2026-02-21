@@ -176,6 +176,9 @@ npm install -g expo-cli
 npx create-expo-app MyApp
 cd MyApp
 npm start
+npm run android
+npm run ios
+npm run web
 ```
 
 Scan QR using Expo Go app on Android/iOS.
