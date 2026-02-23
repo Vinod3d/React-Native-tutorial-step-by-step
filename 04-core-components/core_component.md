@@ -278,12 +278,16 @@ Used for:
 
 ---
 
-### 📌 Important Props
+### 📌 Basic Scroll Behavior Props
 
-| Prop                         | Purpose                  |
-| ---------------------------- | ------------------------ |
-| horizontal                   | Enable horizontal scroll |
-| showsVerticalScrollIndicator | Show scrollbar           |
+| Prop                             | Type    | Purpose                             |
+| -------------------------------- | ------- | ----------------------------------- |
+| `horizontal`                     | boolean | Enables horizontal scrolling        |
+| `pagingEnabled`                  | boolean | Scroll page by page (like carousel) |
+| `bounces`                        | boolean | Enable bounce effect (iOS only)     |
+| `scrollEnabled`                  | boolean | Enable/disable scrolling            |
+| `showsVerticalScrollIndicator`   | boolean | Show vertical scrollbar             |
+| `showsHorizontalScrollIndicator` | boolean | Show horizontal scrollbar           |
 
 
 ### 📌 Interview Question
